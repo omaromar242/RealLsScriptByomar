@@ -1,0 +1,381 @@
+local function createGui()
+    -- Get the local player
+    local player = game.Players.LocalPlayer
+    local playerGui = player:WaitForChild("PlayerGui")
+
+    -- Function to create the GUI
+    local function createInstantGui()
+        if not playerGui:FindFirstChild("InstantGui") then
+            local screenGui = Instance.new("ScreenGui")
+            screenGui.Name = "InstantGui"
+            screenGui.Parent = playerGui
+
+            local instantFrame = Instance.new("Frame")
+            instantFrame.Name = "InstantFrame"
+            instantFrame.Size = UDim2.new(0, 200, 0, 300)  -- Adjusted size to {0, 200}, {0, 300}
+            instantFrame.Position = UDim2.new(0, 270, 0, 100)
+            instantFrame.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+            instantFrame.Visible = false
+            instantFrame.Parent = screenGui
+
+            local textButtonTrash = Instance.new("TextButton")
+            textButtonTrash.Size = UDim2.new(0, 180, 0, 60)
+            textButtonTrash.Position = UDim2.new(0.5, -90, 0.5, -135)  -- Adjusted position
+            textButtonTrash.BackgroundColor3 = Color3.fromRGB(169, 169, 169)
+            textButtonTrash.Text = "Instant Trash Open"
+            textButtonTrash.TextScaled = true
+            textButtonTrash.Parent = instantFrame
+
+            local textButtonVent = Instance.new("TextButton")
+            textButtonVent.Size = UDim2.new(0, 180, 0, 60)
+            textButtonVent.Position = UDim2.new(0.5, -90, 0.5, -70)  -- Adjusted position
+            textButtonVent.BackgroundColor3 = Color3.fromRGB(169, 169, 169)
+            textButtonVent.Text = "Instant Vent"
+            textButtonVent.TextScaled = true
+            textButtonVent.Parent = instantFrame
+
+            local textButtonKitchen = Instance.new("TextButton")
+            textButtonKitchen.Size = UDim2.new(0, 180, 0, 60)
+            textButtonKitchen.Position = UDim2.new(0.5, -90, 0.5, -3)  -- Adjusted position
+            textButtonKitchen.BackgroundColor3 = Color3.fromRGB(169, 169, 169)
+            textButtonKitchen.Text = "Instant Kitchen"
+            textButtonKitchen.TextScaled = true
+            textButtonKitchen.Parent = instantFrame
+
+            local textButtonDanceGamepass = Instance.new("TextButton")
+            textButtonDanceGamepass.Size = UDim2.new(0, 180, 0, 60)
+            textButtonDanceGamepass.Position = UDim2.new(0.5, -90, 0.5, 60)  -- Adjusted position
+            textButtonDanceGamepass.BackgroundColor3 = Color3.fromRGB(169, 169, 169)
+            textButtonDanceGamepass.Text = "Instant Dance Gamepass"
+            textButtonDanceGamepass.TextScaled = true
+            textButtonDanceGamepass.Parent = instantFrame
+
+            local toggleButton = Instance.new("TextButton")
+            toggleButton.Size = UDim2.new(0, 60, 0, 50)
+            toggleButton.Position = UDim2.new(0, 130, 0, 50)
+            toggleButton.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+            toggleButton.Text = "Open"
+            toggleButton.TextScaled = true
+            toggleButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+            toggleButton.Parent = screenGui
+
+            local isFrameVisible = false
+            toggleButton.MouseButton1Click:Connect(function()
+                if isFrameVisible then
+                    instantFrame.Visible = false
+                    toggleButton.Text = "Open"
+                else
+                    instantFrame.Visible = true
+                    toggleButton.Text = "Close"
+                end
+                isFrameVisible = not isFrameVisible
+            end)
+
+            -- Instant Trash Button Functionality
+            local function updateHoldDurationTrash()
+                for _, model in pairs(workspace:GetChildren()) do
+                    if model:IsA("Model") and model.Name == "SearchableDumpster" then
+                        local mainPart = model:FindFirstChild("MainPart")
+                        if mainPart then
+                            local proximityPrompt = mainPart:FindFirstChildOfClass("ProximityPrompt")
+                            if proximityPrompt then
+                                proximityPrompt.HoldDuration = 0.0
+                            end
+                        end
+                    end
+                end
+            end
+
+            -- Instant Vent Button Functionality
+            local function updateHoldDurationVent()
+                local importantInteractiveFolder = workspace:FindFirstChild("ImportantInteractive")
+                if importantInteractiveFolder then
+                    for _, model in pairs(importantInteractiveFolder:GetChildren()) do
+                        if model:IsA("Model") and (model.Name == "SewerTunnel" or model.Name == "WorkingVent") then
+                            local mainPart = model:FindFirstChild("MainPart")
+                            if mainPart then
+                                local proximityPrompt = mainPart:FindFirstChildOfClass("ProximityPrompt")
+                                if proximityPrompt then
+                                    proximityPrompt.HoldDuration = 0.0
+                                end
+                            end
+                            local mainVent = model:FindFirstChild("MainVent")
+                            if mainVent then
+                                local proximityPrompt = mainVent:FindFirstChildOfClass("ProximityPrompt")
+                                if proximityPrompt then
+                                    proximityPrompt.HoldDuration = 0.0
+                                end
+                            end
+                        end
+                    end
+                else
+                    warn("ImportantInteractive folder not found!")
+                end
+            end
+
+            -- Kitchen Button Functionality
+            local function updateHoldDurationKitchen()
+                local importantInteractiveFolder = workspace:FindFirstChild("ImportantInteractive")
+                if importantInteractiveFolder then
+                    for _, model in pairs(importantInteractiveFolder:GetChildren()) do
+                        if model:IsA("Model") then
+                            if model.Name == "ChefSteakStack" then
+                                local mainPart = model:FindFirstChild("MainPart")
+                                if mainPart then
+                                    local attachment = mainPart:FindFirstChild("Attachment")
+                                    if attachment then
+                                        local proximityPrompt = attachment:FindFirstChildOfClass("ProximityPrompt")
+                                        if proximityPrompt then
+                                            proximityPrompt.HoldDuration = 0.0
+                                        end
+                                    end
+                                end
+                            elseif model.Name == "KitchenRefrigerator" then
+                                local body = model:FindFirstChild("Body")
+                                if body then
+                                    local attachment = body:FindFirstChild("Attachment")
+                                    if attachment then
+                                        local proximityPrompt = attachment:FindFirstChildOfClass("ProximityPrompt")
+                                        if proximityPrompt then
+                                            proximityPrompt.HoldDuration = 0.0
+                                        end
+                                    end
+                                end
+                            elseif model.Name == "KitchenStove" then
+                                local stoveTop = model:FindFirstChild("StoveTop")
+                                if stoveTop then
+                                    local attachment = stoveTop:FindFirstChild("Attachment")
+                                    if attachment then
+                                        local proximityPrompt = attachment:FindFirstChildOfClass("ProximityPrompt")
+                                        if proximityPrompt then
+                                            proximityPrompt.HoldDuration = 0.0
+                                        end
+                                    end
+                                end
+                            end
+                        end
+                    end
+                else
+                    warn("ImportantInteractive folder not found!")
+                end
+            end
+
+            -- Instant Dance Gamepass Button Functionality
+            local function instantDanceGamepass()
+                -- Ensure the "AnimsButton" from HUD is set visible when this button is clicked
+                local hud = playerGui:WaitForChild("HUD")
+                local animsButton = hud:WaitForChild("AnimsButton")
+                animsButton.Visible = true
+            end
+
+            -- Button connections
+            textButtonTrash.MouseButton1Click:Connect(updateHoldDurationTrash)
+            textButtonVent.MouseButton1Click:Connect(updateHoldDurationVent)
+            textButtonKitchen.MouseButton1Click:Connect(updateHoldDurationKitchen)
+            textButtonDanceGamepass.MouseButton1Click:Connect(instantDanceGamepass)
+        end
+    end
+
+    player.CharacterAdded:Connect(function()
+        createInstantGui()
+    end)
+
+    createInstantGui()
+end
+
+createGui()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+local function createAutoButtons()
+    -- Create ScreenGui
+    local screenGui = Instance.new("ScreenGui")
+    screenGui.Name = "AutoAttackAutoStompAutoAntiModGUI"
+    screenGui.Parent = game.Players.LocalPlayer.PlayerGui
+
+    -- Create Frame (AutoFrame)
+    local autoFrame = Instance.new("Frame")
+    autoFrame.Name = "AutoFrame"
+    autoFrame.Size = UDim2.new(0, 200, 0, 200)
+    autoFrame.Position = UDim2.new(0, 60, 0, 100)  -- Position the frame below the ToggleButton
+    autoFrame.BackgroundColor3 = Color3.fromRGB(0, 0, 0) -- Black background
+    autoFrame.Visible = false  -- Initially hide the frame
+    autoFrame.Parent = screenGui
+
+    -- Toggle Button (ToggleButton)
+    local toggleButton = Instance.new("TextButton")
+    toggleButton.Name = "ToggleButton"
+    toggleButton.Size = UDim2.new(0, 60, 0, 50)
+    toggleButton.Position = UDim2.new(0, 60, 0, 50)  -- Position at {0, 60}, {0, 50}
+    toggleButton.BackgroundColor3 = Color3.fromRGB(0, 0, 0) -- Black background
+    toggleButton.Text = "Open"
+    toggleButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+    toggleButton.TextScaled = true  -- Enables text scaling
+    toggleButton.BorderSizePixel = 4  -- Border size
+    toggleButton.Parent = screenGui
+
+    -- Auto Attack Button
+    local autoAttackButton = Instance.new("TextButton")
+    autoAttackButton.Size = UDim2.new(0, 180, 0, 50)
+    autoAttackButton.Position = UDim2.new(0.5, -90, 0, 10)
+    autoAttackButton.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
+    autoAttackButton.Text = "Auto Attack"
+    autoAttackButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+    autoAttackButton.TextScaled = true  -- Enables text scaling
+    autoAttackButton.Parent = autoFrame
+
+    -- Auto Stomp Button
+    local autoStompButton = Instance.new("TextButton")
+    autoStompButton.Size = UDim2.new(0, 180, 0, 50)
+    autoStompButton.Position = UDim2.new(0.5, -90, 0, 70)
+    autoStompButton.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
+    autoStompButton.Text = "Auto Stomp"
+    autoStompButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+    autoStompButton.TextScaled = true  -- Enables text scaling
+    autoStompButton.Parent = autoFrame
+
+    -- Auto Anti Mod Button
+    local autoAntiModButton = Instance.new("TextButton")
+    autoAntiModButton.Size = UDim2.new(0, 180, 0, 50)
+    autoAntiModButton.Position = UDim2.new(0.5, -90, 0, 130)
+    autoAntiModButton.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
+    autoAntiModButton.Text = "Auto Anti Mod"
+    autoAntiModButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+    autoAntiModButton.TextScaled = true  -- Enables text scaling
+    autoAntiModButton.Parent = autoFrame
+
+    -- Toggle Frame Visibility when the "ToggleButton" is clicked
+    toggleButton.MouseButton1Click:Connect(function()
+        autoFrame.Visible = not autoFrame.Visible  -- Toggle the visibility of the AutoFrame
+        toggleButton.Text = autoFrame.Visible and "Close" or "Open"  -- Change text based on visibility
+    end)
+
+    -- Auto Attack Logic
+    local autoAttackEnabled = false
+    local args = { [1] = "Swing" }
+    local delayBetweenSwings = 0.1
+    local autoAttackLoopRunning = false  -- Track if the loop is running
+
+    autoAttackButton.MouseButton1Click:Connect(function()
+        autoAttackEnabled = not autoAttackEnabled
+        if autoAttackEnabled then
+            autoAttackButton.BackgroundColor3 = Color3.fromRGB(0, 255, 0) -- Green
+            -- Start the auto attack loop
+            autoAttackLoopRunning = true
+            while autoAttackEnabled do
+                game:GetService("ReplicatedStorage").Events.WeaponEvent:FireServer(unpack(args))
+                wait(delayBetweenSwings)
+            end
+        else
+            autoAttackButton.BackgroundColor3 = Color3.fromRGB(255, 0, 0) -- Red
+            autoAttackLoopRunning = false  -- Stop the loop
+        end
+    end)
+
+    -- Auto Stomp Logic
+    local autoStompEnabled = false
+    local ReplicatedStorage = game:GetService("ReplicatedStorage")
+    local stompEvent = ReplicatedStorage:WaitForChild("Events"):WaitForChild("CarryStompEvent")
+    local stompDelay = 0.5
+    local autoStompLoopRunning = false  -- Track if the loop is running
+
+    autoStompButton.MouseButton1Click:Connect(function()
+        autoStompEnabled = not autoStompEnabled
+        if autoStompEnabled then
+            autoStompButton.BackgroundColor3 = Color3.fromRGB(0, 255, 0) -- Green
+            -- Start the auto stomp loop
+            autoStompLoopRunning = true
+            while autoStompEnabled do
+                stompEvent:FireServer("EPress")
+                wait(stompDelay)
+            end
+        else
+            autoStompButton.BackgroundColor3 = Color3.fromRGB(255, 0, 0) -- Red
+            autoStompLoopRunning = false  -- Stop the loop
+        end
+    end)
+
+    -- Auto Anti Mod Logic
+    local autoAntiModEnabled = false
+    local specificPlayers = {
+        "FinnishNisu", "MTcHavoc", "nxkroo", "ViralMercy", "Athens0hio",
+        "SithJJ", "tapotopi", "ViralDree", "F4LDA", "KlaKoon", "TemmieTerra",
+        "AwesomegamerPC", "ViralNorth"
+    }
+
+    local function isSpecificPlayer(playerName)
+        for _, specificName in ipairs(specificPlayers) do
+            if playerName == specificName then
+                return true
+            end
+        end
+        return false
+    end
+
+    local function kickLocalPlayer()
+        game.Players.LocalPlayer:Kick("A mod joined the game. You have been kicked.")
+    end
+
+    autoAntiModButton.MouseButton1Click:Connect(function()
+        autoAntiModEnabled = not autoAntiModEnabled
+        if autoAntiModEnabled then
+            autoAntiModButton.BackgroundColor3 = Color3.fromRGB(0, 255, 0) -- Green
+            -- Start checking for specific players
+            while autoAntiModEnabled do
+                for _, player in ipairs(game.Players:GetPlayers()) do
+                    if isSpecificPlayer(player.Name) then
+                        kickLocalPlayer()
+                        break
+                    end
+                end
+                wait(1)
+            end
+        else
+            autoAntiModButton.BackgroundColor3 = Color3.fromRGB(255, 0, 0) -- Red
+        end
+    end)
+
+    -- Reset both buttons and scripts when the player dies
+    game.Players.LocalPlayer.CharacterRemoving:Connect(function()
+        -- Reset button colors and states
+        autoAttackEnabled = false
+        autoStompEnabled = false
+        autoAntiModEnabled = false
+        autoAttackButton.BackgroundColor3 = Color3.fromRGB(255, 0, 0) -- Red
+        autoStompButton.BackgroundColor3 = Color3.fromRGB(255, 0, 0) -- Red
+        autoAntiModButton.BackgroundColor3 = Color3.fromRGB(255, 0, 0) -- Red
+
+        -- Stop the loops
+        autoAttackLoopRunning = false
+        autoStompLoopRunning = false
+    end)
+end
+
+-- Ensure the GUI persists on respawn
+game.Players.LocalPlayer.CharacterAdded:Connect(function()
+    -- Wait for the character to fully load, then re-create the GUI
+    wait(1)  -- Give time for the character to load
+    if not game.Players.LocalPlayer.PlayerGui:FindFirstChild("AutoAttackAutoStompAutoAntiModGUI") then
+        createAutoButtons()
+    end
+end)
+
+-- Create the GUI for the first time if it doesn't exist
+if not game.Players.LocalPlayer.PlayerGui:FindFirstChild("AutoAttackAutoStompAutoAntiModGUI") then
+    createAutoButtons()
+end
