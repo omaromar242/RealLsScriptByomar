@@ -162,10 +162,19 @@ local function createGui()
 
             -- Instant Dance Gamepass Button Functionality
             local function instantDanceGamepass()
-                -- Ensure the "AnimsButton" from HUD is set visible when this button is clicked
-                local hud = playerGui:WaitForChild("HUD")
-                local animsButton = hud:WaitForChild("AnimsButton")
-                animsButton.Visible = true
+                -- Get the local player
+                local player = game.Players.LocalPlayer
+                local playerStatsFolder = game:GetService("ReplicatedStorage"):WaitForChild("PlayerStats")
+                local playerFolder = playerStatsFolder:FindFirstChild(player.Name)
+
+                -- Check if the player's folder exists and contains the "AnimPass" value
+                if playerFolder then
+                    local animPass = playerFolder:FindFirstChild("AnimPass")
+                    if animPass then
+                        -- Set the AnimPass value to true
+                        animPass.Value = true
+                    end
+                end
             end
 
             -- Button connections
@@ -184,6 +193,7 @@ local function createGui()
 end
 
 createGui()
+
 
 
 
