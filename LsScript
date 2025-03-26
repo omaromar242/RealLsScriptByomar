@@ -385,6 +385,569 @@ game.Players.LocalPlayer.CharacterAdded:Connect(function()
     end
 end)
 
+
+
+
+
+
+
+
+
+
+
+
+
+local RunService = game:GetService("RunService")
+
+-------------------------------
+-- Instances (GUI creation)
+-------------------------------
+local Farmpartsesp = Instance.new("ScreenGui")
+local openoff = Instance.new("TextButton")
+local FarmpartsespFrame = Instance.new("Frame")
+local Normaltext = Instance.new("TextLabel")
+local EspChoose = Instance.new("TextButton")
+local UICorner = Instance.new("UICorner")
+local FarmChoose = Instance.new("TextButton")
+local UICorner_2 = Instance.new("UICorner")
+local Espframe = Instance.new("Frame")
+local Normaltext_2 = Instance.new("TextLabel")
+local Blade = Instance.new("TextButton")
+local UICorner_3 = Instance.new("UICorner")
+local Gear = Instance.new("TextButton")
+local UICorner_4 = Instance.new("UICorner")
+local Spring = Instance.new("TextButton")
+local UICorner_5 = Instance.new("UICorner")
+local onoff = Instance.new("TextButton")
+local UICorner_6 = Instance.new("UICorner")
+local FarmFrame = Instance.new("Frame")
+local Normaltext_3 = Instance.new("TextLabel")
+local Blade_2 = Instance.new("TextButton")
+local UICorner_7 = Instance.new("UICorner")
+local Gear_2 = Instance.new("TextButton")
+local UICorner_8 = Instance.new("UICorner")
+local Spring_2 = Instance.new("TextButton")
+local UICorner_9 = Instance.new("UICorner")
+local StartStop = Instance.new("TextButton")
+local Bladetextbox = Instance.new("TextBox")
+local Geartextbox = Instance.new("TextBox")
+local Springtextbox = Instance.new("TextBox")
+
+-------------------------------
+-- Properties (GUI setup)
+-------------------------------
+Farmpartsesp.Name = "Farmparts/esp"
+Farmpartsesp.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+Farmpartsesp.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+Farmpartsesp.ResetOnSpawn = false
+
+openoff.Name = "open/off"
+openoff.Parent = Farmpartsesp
+openoff.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+openoff.BorderColor3 = Color3.fromRGB(163, 163, 163)
+openoff.BorderSizePixel = 4
+openoff.Position = UDim2.new(0, 197, 0, 50)
+openoff.Size = UDim2.new(0, 60, 0, 50)
+openoff.Font = Enum.Font.SourceSans
+openoff.Text = "Open"
+openoff.TextColor3 = Color3.fromRGB(113, 225, 62)
+openoff.TextScaled = true
+openoff.TextSize = 14
+openoff.TextWrapped = true
+
+FarmpartsespFrame.Name = "Farmparts/esp Frame"
+FarmpartsespFrame.Parent = Farmpartsesp
+FarmpartsespFrame.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+FarmpartsespFrame.BorderColor3 = Color3.fromRGB(85, 170, 0)
+FarmpartsespFrame.BorderSizePixel = 5
+FarmpartsespFrame.Position = UDim2.new(0, 477, 0, 100)
+FarmpartsespFrame.Size = UDim2.new(0, 200, 0, 300)
+FarmpartsespFrame.Visible = false
+
+Normaltext.Name = "Normaltext"
+Normaltext.Parent = FarmpartsespFrame
+Normaltext.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Normaltext.BackgroundTransparency = 1
+Normaltext.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Normaltext.BorderSizePixel = 0
+Normaltext.Size = UDim2.new(0, 200, 0, 50)
+Normaltext.Font = Enum.Font.SourceSans
+Normaltext.Text = "Farm/esp parts"
+Normaltext.TextColor3 = Color3.fromRGB(141, 202, 0)
+Normaltext.TextScaled = true
+Normaltext.TextSize = 14
+Normaltext.TextWrapped = true
+
+EspChoose.Name = "EspChoose"
+EspChoose.Parent = FarmpartsespFrame
+EspChoose.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
+EspChoose.BorderColor3 = Color3.fromRGB(0, 0, 0)
+EspChoose.BorderSizePixel = 0
+EspChoose.Position = UDim2.new(0.53, 0, 0.194, 0)
+EspChoose.Size = UDim2.new(0, 94, 0, 35)
+EspChoose.Font = Enum.Font.FredokaOne
+EspChoose.Text = "Esp"
+EspChoose.TextColor3 = Color3.fromRGB(0, 0, 0)
+EspChoose.TextScaled = true
+EspChoose.TextSize = 14
+EspChoose.TextWrapped = true
+
+UICorner.Parent = EspChoose
+
+FarmChoose.Name = "FarmChoose"
+FarmChoose.Parent = FarmpartsespFrame
+FarmChoose.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
+FarmChoose.BorderColor3 = Color3.fromRGB(0, 0, 0)
+FarmChoose.BorderSizePixel = 0
+FarmChoose.Position = UDim2.new(0, 0, 0.194, 0)
+FarmChoose.Size = UDim2.new(0, 94, 0, 35)
+FarmChoose.Font = Enum.Font.FredokaOne
+FarmChoose.Text = "Farm"
+FarmChoose.TextColor3 = Color3.fromRGB(0, 0, 0)
+FarmChoose.TextScaled = true
+FarmChoose.TextSize = 14
+FarmChoose.TextWrapped = true
+
+UICorner_2.Parent = FarmChoose
+
+-- Espframe (for ESP mode)
+Espframe.Name = "Espframe"
+Espframe.Parent = FarmpartsespFrame
+Espframe.BackgroundColor3 = Color3.fromRGB(255, 255, 0)
+Espframe.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Espframe.BorderSizePixel = 0
+Espframe.Position = UDim2.new(0, 0, 0.35, 0)
+Espframe.Size = UDim2.new(0, 200, 0, 180)
+Espframe.Visible = false
+
+Normaltext_2.Name = "Normaltext"
+Normaltext_2.Parent = Espframe
+Normaltext_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Normaltext_2.BackgroundTransparency = 1
+Normaltext_2.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Normaltext_2.BorderSizePixel = 0
+Normaltext_2.Size = UDim2.new(0, 200, 0, 31)
+Normaltext_2.Font = Enum.Font.FredokaOne
+Normaltext_2.Text = "Esp"
+Normaltext_2.TextColor3 = Color3.fromRGB(166, 0, 0)
+Normaltext_2.TextScaled = true
+Normaltext_2.TextSize = 14
+Normaltext_2.TextWrapped = true
+
+Blade.Name = "Blade"
+Blade.Parent = Espframe
+Blade.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
+Blade.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Blade.BorderSizePixel = 0
+Blade.Position = UDim2.new(0.66, 0, 0.277, 0)
+Blade.Size = UDim2.new(0, 68, 0, 28)
+Blade.Font = Enum.Font.FredokaOne
+Blade.Text = "Blade"
+Blade.TextColor3 = Color3.fromRGB(0, 0, 0)
+Blade.TextScaled = true
+Blade.TextSize = 14
+Blade.TextWrapped = true
+
+UICorner_3.Parent = Blade
+
+Gear.Name = "Gear"
+Gear.Parent = Espframe
+Gear.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
+Gear.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Gear.BorderSizePixel = 0
+Gear.Position = UDim2.new(0.325, 0, 0.277, 0)
+Gear.Size = UDim2.new(0, 67, 0, 28)
+Gear.Font = Enum.Font.FredokaOne
+Gear.Text = "Gear"
+Gear.TextColor3 = Color3.fromRGB(0, 0, 0)
+Gear.TextScaled = true
+Gear.TextSize = 14
+Gear.TextWrapped = true
+
+UICorner_4.Parent = Gear
+
+Spring.Name = "Spring"
+Spring.Parent = Espframe
+Spring.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
+Spring.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Spring.BorderSizePixel = 0
+Spring.Position = UDim2.new(0, 0, 0.277, 0)
+Spring.Size = UDim2.new(0, 65, 0, 28)
+Spring.Font = Enum.Font.FredokaOne
+Spring.Text = "Spring"
+Spring.TextColor3 = Color3.fromRGB(0, 0, 0)
+Spring.TextScaled = true
+Spring.TextSize = 14
+Spring.TextWrapped = true
+
+UICorner_5.Parent = Spring
+
+onoff.Name = "on/off"
+onoff.Parent = Espframe
+onoff.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
+onoff.BorderColor3 = Color3.fromRGB(0, 0, 0)
+onoff.BorderSizePixel = 0
+onoff.Position = UDim2.new(0.33, 0, 0.538, 0)
+onoff.Size = UDim2.new(0, 68, 0, 28)
+onoff.Font = Enum.Font.FredokaOne
+onoff.Text = "Off"
+onoff.TextColor3 = Color3.fromRGB(0, 0, 0)
+onoff.TextScaled = true
+onoff.TextSize = 14
+onoff.TextWrapped = true
+
+UICorner_6.Parent = onoff
+
+-- FarmFrame (for farming/teleportation)
+FarmFrame.Name = "FarmFrame"
+FarmFrame.Parent = FarmpartsespFrame
+FarmFrame.BackgroundColor3 = Color3.fromRGB(0, 85, 127)
+FarmFrame.BorderColor3 = Color3.fromRGB(0, 0, 0)
+FarmFrame.BorderSizePixel = 0
+FarmFrame.Position = UDim2.new(0, 0, 0.35, 0)
+FarmFrame.Size = UDim2.new(0, 200, 0, 180)
+FarmFrame.Visible = false
+
+Normaltext_3.Name = "Normaltext"
+Normaltext_3.Parent = FarmFrame
+Normaltext_3.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Normaltext_3.BackgroundTransparency = 1
+Normaltext_3.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Normaltext_3.BorderSizePixel = 0
+Normaltext_3.Size = UDim2.new(0, 200, 0, 31)
+Normaltext_3.Font = Enum.Font.FredokaOne
+Normaltext_3.Text = "Farm"
+Normaltext_3.TextColor3 = Color3.fromRGB(57, 119, 166)
+Normaltext_3.TextScaled = true
+Normaltext_3.TextSize = 14
+Normaltext_3.TextWrapped = true
+
+Blade_2.Name = "Blade"
+Blade_2.Parent = FarmFrame
+Blade_2.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
+Blade_2.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Blade_2.BorderSizePixel = 0
+Blade_2.Position = UDim2.new(0.66, 0, 0.277, 0)
+Blade_2.Size = UDim2.new(0, 68, 0, 28)
+Blade_2.Font = Enum.Font.FredokaOne
+Blade_2.Text = "Blade"
+Blade_2.TextColor3 = Color3.fromRGB(0, 0, 0)
+Blade_2.TextScaled = true
+Blade_2.TextSize = 14
+Blade_2.TextWrapped = true
+
+UICorner_7.Parent = Blade_2
+
+Gear_2.Name = "Gear"
+Gear_2.Parent = FarmFrame
+Gear_2.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
+Gear_2.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Gear_2.BorderSizePixel = 0
+Gear_2.Position = UDim2.new(0.325, 0, 0.277, 0)
+Gear_2.Size = UDim2.new(0, 67, 0, 28)
+Gear_2.Font = Enum.Font.FredokaOne
+Gear_2.Text = "Gear"
+Gear_2.TextColor3 = Color3.fromRGB(0, 0, 0)
+Gear_2.TextScaled = true
+Gear_2.TextSize = 14
+Gear_2.TextWrapped = true
+
+UICorner_8.Parent = Gear_2
+
+Spring_2.Name = "Spring"
+Spring_2.Parent = FarmFrame
+Spring_2.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
+Spring_2.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Spring_2.BorderSizePixel = 0
+Spring_2.Position = UDim2.new(0, 0, 0.277, 0)
+Spring_2.Size = UDim2.new(0, 65, 0, 28)
+Spring_2.Font = Enum.Font.FredokaOne
+Spring_2.Text = "Spring"
+Spring_2.TextColor3 = Color3.fromRGB(0, 0, 0)
+Spring_2.TextScaled = true
+Spring_2.TextSize = 14
+Spring_2.TextWrapped = true
+
+UICorner_9.Parent = Spring_2
+
+StartStop.Name = "Start/Stop"
+StartStop.Parent = FarmFrame
+StartStop.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
+StartStop.BorderColor3 = Color3.fromRGB(0, 0, 0)
+StartStop.BorderSizePixel = 4
+StartStop.Position = UDim2.new(0.33, 0, 0.727, 0)
+StartStop.Size = UDim2.new(0, 68, 0, 28)
+StartStop.Font = Enum.Font.FredokaOne
+StartStop.Text = "Start"
+StartStop.TextColor3 = Color3.fromRGB(0, 0, 0)
+StartStop.TextScaled = true
+StartStop.TextSize = 14
+StartStop.TextWrapped = true
+
+Bladetextbox.Name = "Bladetextbox"
+Bladetextbox.Parent = FarmFrame
+Bladetextbox.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Bladetextbox.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Bladetextbox.BorderSizePixel = 5
+Bladetextbox.Position = UDim2.new(0.7, 0, 0.45, 0)
+Bladetextbox.Size = UDim2.new(0, 54, 0, 17)
+Bladetextbox.Font = Enum.Font.FredokaOne
+Bladetextbox.Text = "How much"
+Bladetextbox.TextColor3 = Color3.fromRGB(0, 0, 0)
+Bladetextbox.TextScaled = true
+Bladetextbox.TextSize = 14
+Bladetextbox.TextWrapped = true
+
+Geartextbox.Name = "Geartextbox"
+Geartextbox.Parent = FarmFrame
+Geartextbox.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Geartextbox.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Geartextbox.BorderSizePixel = 5
+Geartextbox.Position = UDim2.new(0.365, 0, 0.45, 0)
+Geartextbox.Size = UDim2.new(0, 54, 0, 17)
+Geartextbox.Font = Enum.Font.FredokaOne
+Geartextbox.Text = "How much"
+Geartextbox.TextColor3 = Color3.fromRGB(0, 0, 0)
+Geartextbox.TextScaled = true
+Geartextbox.TextSize = 14
+Geartextbox.TextWrapped = true
+
+Springtextbox.Name = "Springtextbox"
+Springtextbox.Parent = FarmFrame
+Springtextbox.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Springtextbox.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Springtextbox.BorderSizePixel = 5
+Springtextbox.Position = UDim2.new(0.025, 0, 0.45, 0)
+Springtextbox.Size = UDim2.new(0, 54, 0, 17)
+Springtextbox.Font = Enum.Font.FredokaOne
+Springtextbox.Text = "How much"
+Springtextbox.TextColor3 = Color3.fromRGB(0, 0, 0)
+Springtextbox.TextScaled = true
+Springtextbox.TextSize = 14
+Springtextbox.TextWrapped = true
+
+-----------------------------------------
+-- Script for ESP toggles (unchanged)
+-----------------------------------------
+local bladeActive = false
+local gearActive = false
+local springActive = false
+local globalActive = false
+local updateConnection = nil
+
+openoff.MouseButton1Click:Connect(function()
+    if openoff.Text == "Open" then
+        openoff.Text = "Close"
+        FarmpartsespFrame.Visible = true
+    else
+        openoff.Text = "Open"
+        FarmpartsespFrame.Visible = false
+    end
+end)
+
+EspChoose.MouseButton1Click:Connect(function()
+    EspChoose.BackgroundColor3 = Color3.fromRGB(0, 255, 0)
+    FarmChoose.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
+    Espframe.Visible = true
+    FarmFrame.Visible = false
+end)
+
+FarmChoose.MouseButton1Click:Connect(function()
+    FarmChoose.BackgroundColor3 = Color3.fromRGB(0, 255, 0)
+    EspChoose.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
+    Espframe.Visible = false
+    FarmFrame.Visible = true
+end)
+
+Blade.MouseButton1Click:Connect(function()
+    bladeActive = not bladeActive
+    Blade.BackgroundColor3 = bladeActive and Color3.fromRGB(0,255,0) or Color3.fromRGB(255,0,0)
+end)
+
+Gear.MouseButton1Click:Connect(function()
+    gearActive = not gearActive
+    Gear.BackgroundColor3 = gearActive and Color3.fromRGB(0,255,0) or Color3.fromRGB(255,0,0)
+end)
+
+Spring.MouseButton1Click:Connect(function()
+    springActive = not springActive
+    Spring.BackgroundColor3 = springActive and Color3.fromRGB(0,255,0) or Color3.fromRGB(255,0,0)
+end)
+
+local function addBillboard(part, partName, color)
+    if not part:FindFirstChild("MyBillboard") then
+        local billboard = Instance.new("BillboardGui")
+        billboard.Name = "MyBillboard"
+        billboard.Parent = part
+        billboard.Adornee = part
+        billboard.Size = UDim2.new(0, 50, 0, 20)
+        billboard.StudsOffset = Vector3.new(0, 1, 0)
+        billboard.AlwaysOnTop = true
+
+        local textLabel = Instance.new("TextLabel", billboard)
+        textLabel.Size = UDim2.new(1, 0, 1, 0)
+        textLabel.BackgroundTransparency = 1
+        textLabel.Text = partName
+        textLabel.TextColor3 = color
+        textLabel.TextScaled = true
+    end
+end
+
+local function removeBillboard(part)
+    local billboard = part:FindFirstChild("MyBillboard")
+    if billboard then
+        billboard:Destroy()
+    end
+end
+
+-- Update loop for ESP global toggle (operates on workspace.SpawnsLoot)
+local function startUpdateLoop()
+    updateConnection = RunService.Heartbeat:Connect(function()
+        local spawnsFolder = workspace:FindFirstChild("SpawnsLoot")
+        if spawnsFolder then
+            for _, model in ipairs(spawnsFolder:GetChildren()) do
+                if model:IsA("Model") then
+                    local partsToCheck = {
+                        Blade = {active = bladeActive, color = Color3.fromRGB(255, 0, 0)},
+                        Gear = {active = gearActive, color = Color3.fromRGB(128, 0, 128)},
+                        Spring = {active = springActive, color = Color3.fromRGB(0, 0, 0)}
+                    }
+                    for partName, info in pairs(partsToCheck) do
+                        local part = model:FindFirstChild(partName)
+                        if part then
+                            if info.active and part.Transparency == 0 then
+                                addBillboard(part, partName, info.color)
+                            else
+                                removeBillboard(part)
+                            end
+                        end
+                    end
+                end
+            end
+        end
+    end)
+end
+
+local function stopUpdateLoop()
+    if updateConnection then
+        updateConnection:Disconnect()
+        updateConnection = nil
+    end
+    local spawnsFolder = workspace:FindFirstChild("SpawnsLoot")
+    if spawnsFolder then
+        for _, model in ipairs(spawnsFolder:GetChildren()) do
+            if model:IsA("Model") then
+                for _, partName in ipairs({"Blade", "Gear", "Spring"}) do
+                    local part = model:FindFirstChild(partName)
+                    if part then
+                        removeBillboard(part)
+                    end
+                end
+            end
+        end
+    end
+end
+
+onoff.MouseButton1Click:Connect(function()
+    globalActive = not globalActive
+    if globalActive then
+        onoff.Text = "On"
+        onoff.BackgroundColor3 = Color3.fromRGB(0,255,0)
+        startUpdateLoop()
+    else
+        onoff.Text = "Off"
+        onoff.BackgroundColor3 = Color3.fromRGB(255,0,0)
+        stopUpdateLoop()
+    end
+end)
+
+-----------------------------------------
+-- FarmFrame: Teleportation (Farming) functionality
+-----------------------------------------
+local farmBladeActive = false
+local farmGearActive = false
+local farmSpringActive = false
+local farmRunning = false
+
+-- Toggle buttons for FarmFrame
+Blade_2.MouseButton1Click:Connect(function()
+    farmBladeActive = not farmBladeActive
+    Blade_2.BackgroundColor3 = farmBladeActive and Color3.fromRGB(0,255,0) or Color3.fromRGB(255,0,0)
+end)
+
+Gear_2.MouseButton1Click:Connect(function()
+    farmGearActive = not farmGearActive
+    Gear_2.BackgroundColor3 = farmGearActive and Color3.fromRGB(0,255,0) or Color3.fromRGB(255,0,0)
+end)
+
+Spring_2.MouseButton1Click:Connect(function()
+    farmSpringActive = not farmSpringActive
+    Spring_2.BackgroundColor3 = farmSpringActive and Color3.fromRGB(0,255,0) or Color3.fromRGB(255,0,0)
+end)
+
+-- Start/Stop farming process
+StartStop.MouseButton1Click:Connect(function()
+    if not farmRunning then
+        farmRunning = true
+        StartStop.Text = "Stop"
+        StartStop.BackgroundColor3 = Color3.fromRGB(0,255,0)
+        
+        local bladeCount = tonumber(Bladetextbox.Text) or 0
+        local gearCount = tonumber(Geartextbox.Text) or 0
+        local springCount = tonumber(Springtextbox.Text) or 0
+        
+        local player = game.Players.LocalPlayer
+        local character = player.Character
+        if not character or not character:FindFirstChild("HumanoidRootPart") then
+            farmRunning = false
+            StartStop.Text = "Start"
+            StartStop.BackgroundColor3 = Color3.fromRGB(255,0,0)
+            return
+        end
+        local hrp = character.HumanoidRootPart
+        
+        local function teleportToParts(partName, count)
+            local teleported = 0
+            local spawnsFolder = workspace:FindFirstChild("SpawnsLoot")
+            if spawnsFolder then
+                for _, model in ipairs(spawnsFolder:GetChildren()) do
+                    if not farmRunning then break end
+                    if model:IsA("Model") then
+                        local part = model:FindFirstChild(partName)
+                        if part and part.Transparency == 0 then
+                            hrp.CFrame = part.CFrame + Vector3.new(0,2,0)
+                            part.Transparency = 1  -- mark as visited
+                            teleported = teleported + 1
+                            wait(1)
+                            if teleported >= count then
+                                break
+                            end
+                        end
+                    end
+                end
+            end
+        end
+        
+        if farmBladeActive and bladeCount > 0 then
+            teleportToParts("Blade", bladeCount)
+        end
+        if farmGearActive and gearCount > 0 then
+            teleportToParts("Gear", gearCount)
+        end
+        if farmSpringActive and springCount > 0 then
+            teleportToParts("Spring", springCount)
+        end
+        
+        farmRunning = false
+        StartStop.Text = "Start"
+        StartStop.BackgroundColor3 = Color3.fromRGB(255,0,0)
+    else
+        farmRunning = false
+        StartStop.Text = "Start"
+        StartStop.BackgroundColor3 = Color3.fromRGB(255,0,0)
+    end
+end)
+
 -- Create the GUI for the first time if it doesn't exist
 if not game.Players.LocalPlayer.PlayerGui:FindFirstChild("AutoAttackAutoStompAutoAntiModGUI") then
     createAutoButtons()
